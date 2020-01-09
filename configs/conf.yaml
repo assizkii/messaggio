@@ -1,0 +1,9 @@
+host: :6060
+
+
+dbHost: 172.18.0.2
+dbName: postgres
+dbUser: postgres
+dbPassword: password
+
+ampqHost: "amqp://user:password@localhost:5672/"
