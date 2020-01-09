@@ -16,15 +16,15 @@ limitations under the License.
 package cmd
 
 import (
+	"github.com/assizkii/messaggio/internal/adapters/servers/http_server"
 	"github.com/spf13/cobra"
-	"messaggio/internal/adapters/servers/http_server"
 )
 
 // httpServeCmd represents the httpServe command
 var httpServeCmd = &cobra.Command{
 	Use:   "server",
 	Short: "A http server for sms",
-	Long: `Run http server`,
+	Long:  `Run http server`,
 	Run: func(cmd *cobra.Command, args []string) {
 		http_server.StartServer()
 	},

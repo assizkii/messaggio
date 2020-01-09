@@ -16,10 +16,10 @@ limitations under the License.
 package cmd
 
 import (
+	"github.com/assizkii/messaggio/internal/adapters/storages"
+	"github.com/assizkii/messaggio/internal/queue"
+	"github.com/assizkii/messaggio/internal/utils"
 	"github.com/streadway/amqp"
-	"messaggio/internal/adapters/storages"
-	"messaggio/internal/queue"
-	"messaggio/internal/utils"
 
 	"github.com/spf13/cobra"
 )
@@ -28,16 +28,15 @@ import (
 var consumerServeCmd = &cobra.Command{
 	Use:   "consumer",
 	Short: "A consumer server",
-	Long: `Run a consumer queue`,
+	Long:  `Run a consumer queue`,
 	Run: func(cmd *cobra.Command, args []string) {
 		appConf := utils.GetAppConfig()
 
-		dsn := "host="+appConf.DbHost+" user="+appConf.DbUser+" password="+appConf.DbPassword+" dbname="+appConf.DbName+"  sslmode=disable"
+		dsn := "host=" + appConf.DbHost + " user=" + appConf.DbUser + " password=" + appConf.DbPassword + " dbname=" + appConf.DbName + "  sslmode=disable"
 		storage := storages.New(dsn)
 
 		conn, err := amqp.Dial(appConf.AmpqHost)
 		queue.HandleError(err, "Can't connect to AMQP")
-
 
 		defer conn.Close()
 

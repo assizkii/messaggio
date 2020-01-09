@@ -2,9 +2,9 @@ package http_server
 
 import (
 	"encoding/json"
+	appqueue "github.com/assizkii/messaggio/internal/queue"
 	"github.com/streadway/amqp"
 	"log"
-	appqueue "messaggio/internal/queue"
 	"net/http"
 )
 
@@ -25,7 +25,6 @@ func (s *MessageHttpServiceServer) AddMessageHandler(w http.ResponseWriter, r *h
 	queue, err := s.amqpChannel.QueueDeclare("add", true, false, false, false, nil)
 	appqueue.HandleError(err, "Could not declare `add` queue")
 
-
 	body, err := json.Marshal(message)
 
 	if err != nil {
@@ -33,7 +32,6 @@ func (s *MessageHttpServiceServer) AddMessageHandler(w http.ResponseWriter, r *h
 		showResponse(result, w)
 		return
 	}
-
 
 	err = s.amqpChannel.Publish("", queue.Name, false, false, amqp.Publishing{
 		DeliveryMode: amqp.Persistent,

@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "messaggio/cmd"
+import "github.com/assizkii/messaggio/cmd"
 
 func main() {
   cmd.Execute()

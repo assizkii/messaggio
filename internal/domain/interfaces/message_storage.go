@@ -1,8 +1,8 @@
 package interfaces
 
-type Message struct  {
+type Message struct {
 	Phone string
-	Text string
+	Text  string
 }
 
 type MessageStorage interface {

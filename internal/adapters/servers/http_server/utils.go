@@ -3,7 +3,7 @@ package http_server
 import (
 	"encoding/json"
 	"errors"
-	"messaggio/internal/domain/interfaces"
+	"github.com/assizkii/messaggio/internal/domain/interfaces"
 	"net/http"
 	"regexp"
 )
@@ -22,8 +22,7 @@ func prepareRequestData(r *http.Request) (interfaces.Message, error) {
 	return message, nil
 }
 
-
-func phoneValidate(phone string) error  {
+func phoneValidate(phone string) error {
 
 	phonePattern := regexp.MustCompile(`^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$`)
 	if !phonePattern.MatchString(phone) {
@@ -43,4 +42,3 @@ func showResponse(result *HttpResponse, w http.ResponseWriter) {
 	w.WriteHeader(result.status)
 	w.Write(response)
 }
-

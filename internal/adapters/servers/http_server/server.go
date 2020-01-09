@@ -2,10 +2,10 @@ package http_server
 
 import (
 	"fmt"
+	"github.com/assizkii/messaggio/internal/queue"
+	"github.com/assizkii/messaggio/internal/utils"
 	"github.com/streadway/amqp"
 	"log"
-	"messaggio/internal/queue"
-	"messaggio/internal/utils"
 	"net/http"
 )
 
@@ -20,7 +20,6 @@ type MessageHttpServiceServer struct {
 }
 
 func StartServer() {
-
 
 	appConf := utils.GetAppConfig()
 

@@ -14,9 +14,8 @@ type ServerConfig struct {
 	DbName     string `yaml:"db_name"`
 	DbUser     string `yaml:"db_user"`
 	DbPassword string `yaml:"db_password"`
-	AmpqHost string `yaml:"ampq_host"`
+	AmpqHost   string `yaml:"ampq_host"`
 }
-
 
 func initConfig() {
 	if cfgFile != "" {
@@ -47,4 +46,3 @@ func GetAppConfig() ServerConfig {
 
 	return appConfig
 }
-

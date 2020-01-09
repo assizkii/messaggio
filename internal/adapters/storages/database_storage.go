@@ -1,11 +1,11 @@
 package storages
 
 import (
+	"github.com/assizkii/messaggio/internal/domain/interfaces"
 	_ "github.com/jackc/pgx/stdlib"
 	"github.com/jmoiron/sqlx"
 	"io/ioutil"
 	"log"
-	"messaggio/internal/domain/interfaces"
 	"os"
 	"path/filepath"
 )
@@ -29,7 +29,6 @@ func New(dsn string) interfaces.MessageStorage {
 
 func (pg *PgStorage) Add(m *interfaces.Message) (int, error) {
 
-
 	query := `insert into messages(phone, text)
 				 values($1, $2) RETURNING id`
 
@@ -44,8 +43,7 @@ func (pg *PgStorage) Add(m *interfaces.Message) (int, error) {
 }
 
 // sql migrations from migrations folder
-func Migrate(db *sqlx.DB) error  {
-
+func Migrate(db *sqlx.DB) error {
 
 	err := filepath.Walk("./migrations", func(path string, info os.FileInfo, err error) error {
 

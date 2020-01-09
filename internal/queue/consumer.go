@@ -2,9 +2,9 @@ package queue
 
 import (
 	"encoding/json"
+	"github.com/assizkii/messaggio/internal/domain/interfaces"
 	"github.com/streadway/amqp"
 	"log"
-	"messaggio/internal/domain/interfaces"
 	"os"
 )
 
@@ -15,11 +15,10 @@ func HandleError(err error, msg string) {
 
 }
 
-func Serve(host string) *amqp.Channel  {
+func Serve(host string) *amqp.Channel {
 
 	conn, err := amqp.Dial(host)
 	HandleError(err, "Can't connect to AMQP")
-
 
 	defer conn.Close()
 
